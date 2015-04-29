@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header';
+import Markdown from '../Markdown';
 
 /*
   Component specific stylesheet
@@ -16,6 +17,7 @@ export default class Application extends React.Component {
         <main className="ApplicationComponent-body">
           <p>Seems like creating your own React starter kit is a right of passage. So, here's mine.</p>
           <p>For more information, see the <a href="https://github.com/bradleyboy/yarsk#yarsk">Readme</a>.</p>
+          <Markdown />
         </main>
       </div>
     </div>;
