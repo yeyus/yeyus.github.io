@@ -15,7 +15,9 @@
   "author": "Brad Daily <brad@bradleyboy.com>",
   "license": "MIT",
   "dependencies": {
+    "github-markdown-css": "^2.0.8",
     "marked": "^0.3.3",
+    "raw-loader": "^0.5.1",
     "react": "~0.13.0"
   },
   "devDependencies": {

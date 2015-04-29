@@ -1,12 +1,14 @@
 import React from 'react';
 import marked from 'marked';
 
-require('./style.sass');
+require('github-markdown-css/github-markdown.css');
+
+var demoFile = require('raw!./demo.md');
 
 export default class Markdown extends React.Component {
   render() {
-    var markdownOutput = marked('I am using __markdown__.');
+    var markdownOutput = marked(demoFile);
 
-    return <div className="markdown" dangerouslySetInnerHTML={{__html: markdownOutput}} />;
+    return <div className="markdown-body" dangerouslySetInnerHTML={{__html: markdownOutput}} />;
   }
 }
