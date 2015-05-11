@@ -1,0 +1,14 @@
+{
+	"posts": [
+		{
+			"markdown": "demo.md",
+			"date": 1430461022,
+			"author": "me"
+		},
+		{
+			"markdown": "lipsum.md",
+			"date": 1431218695,
+			"author": "me"
+		}
+	]
+}
