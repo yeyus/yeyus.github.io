@@ -16,5 +16,6 @@ import PostsStore from './stores/posts-store';
 require('file?name=posts/posts.json!./posts/posts.json');
 require('file?name=posts/demo.md!./posts/demo.md');
 require('file?name=posts/lipsum.md!./posts/lipsum.md');
+require('file?name=posts/gh-pages-deploy-notes.md!./posts/gh-pages-deploy-notes.md');
 
 React.render(<Application />, document.getElementById('app'));
