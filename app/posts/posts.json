@@ -9,6 +9,11 @@
 			"markdown": "lipsum.md",
 			"date": 1431218695,
 			"author": "me"
+		},
+		{
+			"markdown": "gh-pages-deploy-notes.md",
+			"date": 1431585827,
+			"author": "me"
 		}
 	]
 }

@@ -4,6 +4,7 @@ import Qajax from 'qajax';
 import marked from 'marked';
 
 require('github-markdown-css/github-markdown.css');
+require('./markdown-overrides.scss');
 
 export default class Markdown extends React.Component {
 
