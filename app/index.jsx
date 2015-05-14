@@ -12,6 +12,8 @@ import Application from './components/Application';
 import Alt from './alt';
 import PostsStore from './stores/posts-store';
 
+require('file?name=.nojekyll!./.nojekyll');
+
 // assets load
 require('file?name=posts/posts.json!./posts/posts.json');
 require('file?name=posts/demo.md!./posts/demo.md');
