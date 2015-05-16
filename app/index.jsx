@@ -13,6 +13,7 @@ import Alt from './alt';
 import PostsStore from './stores/posts-store';
 
 require('file?name=.nojekyll!./.nojekyll');
+require('file?name=CNAME!./CNAME');
 
 // assets load
 require('file?name=posts/posts.json!./posts/posts.json');

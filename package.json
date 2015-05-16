@@ -1,7 +1,7 @@
 {
-  "name": "yarsk",
+  "name": "yeyus-github-io",
   "version": "1.0.0",
-  "description": "My React starter kit. Webpack, Babel, Sass, React 0.13 and more.",
+  "description": "Personal website.",
   "main": "app/index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start conf/karma.conf.js --single-run",
@@ -12,7 +12,7 @@
     "build": "./node_modules/.bin/webpack --config conf/webpack.production.js",
     "build:gh": "npm run build && node ./build-gh-pages.js && rm -r ./dist"
   },
-  "author": "Brad Daily <brad@bradleyboy.com>",
+  "author": "Jesus Trujillo <elyeyus@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "alt": "^0.16.1",
