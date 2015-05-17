@@ -1,11 +1,6 @@
 {
 	"posts": [
 		{
-			"markdown": "demo.md",
-			"date": 1430461022,
-			"author": "me"
-		},
-		{
 			"markdown": "lipsum.md",
 			"date": 1431218695,
 			"author": "me"
@@ -18,6 +13,11 @@
 		{
 			"markdown": "nacl-install.md",
 			"date": 1431822844,
+			"author": "me"
+		},
+		{
+			"markdown": "naclports-install.md",
+			"date": 1431839441,
 			"author": "me"
 		}
 	]
