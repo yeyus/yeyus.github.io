@@ -20,5 +20,6 @@ require('file?name=posts/posts.json!./posts/posts.json');
 require('file?name=posts/demo.md!./posts/demo.md');
 require('file?name=posts/lipsum.md!./posts/lipsum.md');
 require('file?name=posts/gh-pages-deploy-notes.md!./posts/gh-pages-deploy-notes.md');
+require('file?name=posts/nacl-install.md!./posts/nacl-install.md');
 
 React.render(<Application />, document.getElementById('app'));
