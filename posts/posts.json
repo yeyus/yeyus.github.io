@@ -14,6 +14,11 @@
 			"markdown": "gh-pages-deploy-notes.md",
 			"date": 1431585827,
 			"author": "me"
+		},
+		{
+			"markdown": "nacl-install.md",
+			"date": 1431822844,
+			"author": "me"
 		}
 	]
 }
