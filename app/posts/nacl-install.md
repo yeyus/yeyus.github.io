@@ -33,22 +33,22 @@ Install Native Client (NaCl)
 
   All installed bundles are up-to-date.
 
-  $ ./naclsdk install pepper_42
+  $ ./naclsdk install pepper_43
 
-  Downloading bundle pepper_42
+  Downloading bundle pepper_43
   (file 1/2 - "naclports.tar.bz2")
   |================================================|
   ..................^C
   yeyus@MBP-de-Jesus ~/devel/nacl_sdk % naclsdk: interrupted
-  ./naclsdk install pepper_42
-  Downloading bundle pepper_42
+  ./naclsdk install pepper_43
+  Downloading bundle pepper_43
   (file 1/2 - "naclports.tar.bz2")
   |================================================|
   ..................................................
   (file 2/2 - "naclsdk_mac.tar.bz2")
   |================================================|
   ..................................................
-  Updating bundle pepper_42 to version 42, revision 509
+  Updating bundle pepper_43 to version 43, revision 509
   (file 1/2 - "naclports.tar.bz2")
   (file 2/2 - "naclsdk_mac.tar.bz2")
   ```
@@ -56,7 +56,7 @@ Install Native Client (NaCl)
 3. Running a Native Client example
 
   ```
-  $ cd pepper_42/getting_started
+  $ cd pepper_43/getting_started
   $ make
 
   ...
