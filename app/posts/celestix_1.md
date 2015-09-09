@@ -8,11 +8,11 @@ model name      : Intel(R) Celeron(R) CPU        E1500  @ 2.20GHz
 flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good nopl aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm lahf_lm dtherm
 ```
 
-I had to buy a 2.5" 500GB SATA for it and I was done sourcing components for it.
+I just had to buy a 2.5" 500GB SATA for it and I was done sourcing components for it.
 
 The first thing you notice when researching the unit is a very nice 40x2 alphanumeric LCD plus a jog dial on it, it would be very nice to be able to display custom stuff in there or at least been able to use it with *provided* monitoring software.
 
-The second one is that RSA resells machines bought from OEMs and this unit is actually a Celextix MSA series appliance so probably they provide a comprehensive BSP package but no luck, they don't provide any driver _at_ - _all_ and no luck finding any drivers either in the internets. Looking on the internets I found [a pretty good forum thread](https://forum.pfsense.org/index.php?topic=66852.msg511660#msg511660) covering some previous RE attemps by members of the pfSense community.
+The second thing I noticed is that RSA resells machines bought from OEMs and this unit is actually a Celextix MSA series appliance so probably they might provide a comprehensive BSP package but no luck, they don't provide any driver _at_ - _all_ and no luck finding any drivers either on the internets. At some point I found [a pretty good forum thread](https://forum.pfsense.org/index.php?topic=66852.msg511660#msg511660) covering some previous RE attemps by members of the pfSense community.
 
 User *pkirkovsky* did a pretty amazing job figuring the pin out for the module:
 
@@ -197,24 +197,23 @@ END COLLECTION
 
 So apparently we have a composite device (Keyboard + LCD), Keyboard is an input device and LCD is an output device. Keyboard will produce a 8 fields 1 bit each for the buttons (Left, Right, Enter) and another report 8 bit size ranging from 0 (No Event) to 104 (F13 Key).
 
-1st RE attemp - Naive trying
-----------------------------
+### 1st RE attempt - Naive trying
 
-Lets suppose that the 40x2 LCD receives a 80 character payload with the values that we expect it to show. Lets just send the characters to the unit and see if the magic happens...
+Lets suppose that the 40x2 LCD receives a 80 character payload with the values that we expect it to show. Lets just send the characters to the unit and see if the magic happens... We have 8 bytes remaining to guess, but who cares?.
 
-Nope
+Other attempts included generating sequential value (0x00 to 0xFF) values to fill the first 8 bytes and filling the 80 remaining characters with 'A' character. No luck but I managed to clear the LCD, maybe I did hit the clear command?.
 
-2nd RE attemp - Driver dissassemble
------------------------------------
+### 2nd RE attempt - Driver dissassemble
 
-After some pretty intense googling I was able to find an update package for a similar unit provided by the manufacturer and some decompression after that I got two _.sys_, _.inf_ and some _.exe_ files. [LCD Driver Download](http://sus2.celestix.com/display.asp?id=CKB200030)
+After some pretty intense googling I was able to find an update package for a similar unit provided by the manufacturer and after some decompression I got two _.sys_, _.inf_ and some _.exe_ files. [LCD Driver Download](http://sus2.celestix.com/display.asp?id=CKB200030). This looked promising as I have some real software that I can try with the device at least.
 
-Using IDA Pro I tried to guess how the driver communicates with the hardware without any results, it's clear that I'm not an expert about how WDM api works. But A better idea came.
+Using IDA Pro I tried to guess how the driver communicates with the hardware without any results, it's clear that I'm not an expert about how WDM api works. But a-much-better idea came to my mind.
 
-3rd RE attemp - Sniffing working app
-------------------------------------
+### 3rd RE attempt - Sniffing working app
 
-As I told you before this CPU supports virtualization so I came to the point that if I could virtualize a Windows environment with the payload I found previously and the "unknown USB device" attached to the VM machine. That way it would be very easy to use tcpdump + usbmon devices to sniff all the usb traffic going through the device.
+As I told you before this CPU supports virtualization so I came to the point that if I could virtualize a Windows environment running the device driver I found previously and attaching our "unknown USB device" to the VM machine. That way it would be very easy to use tcpdump + usbmon devices to sniff all the usb traffic going through the device.
+
+Finally I got this:
 
 Captured URBs
 ```
@@ -227,8 +226,12 @@ Captured URBs
 00:00:00:01:28:00:00:00 . 53:59:53:20:54:65:6d:70:65:72:61:74:75:72:65:3a:20:32:35:35:20:64:65:67:20:43:20:2f:20:34:39:31:20:64:65:67:20:46:20:20:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
 ```
 
+So from that point it was easy to guess the meaning of the remaining 8 bytes, I tried to play with the included software as well as sniffing device initialization but the only payload I could see had always the same structure so we can't determine if the device has more available commands.
+
 Command Format:
 ```
 00:00:00:[LINE]:28:00:00:00
 ```
+
+From this point implementing a driver using [HID API](http://www.signal11.us/oss/hidapi/) was certainly trivial. I took some time to implement a simple program that will print "Test Test Test" to the LCD and published [here](https://github.com/yeyus/celestix_hid) (GPLv3).
 
