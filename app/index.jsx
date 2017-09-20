@@ -23,5 +23,6 @@ require('file?name=posts/nacl-install.md!./posts/nacl-install.md');
 require('file?name=posts/naclports-install.md!./posts/naclports-install.md');
 require('file?name=posts/celestix_1.md!./posts/celestix_1.md');
 require('file?name=posts/kubernetes-development-i.md!./posts/kubernetes-development-i.md');
+require('file?name=posts/kubernetes-ca.md!./posts/kubernetes-ca.md');
 
 React.render(<Application />, document.getElementById('app'));

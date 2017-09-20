@@ -29,6 +29,11 @@
       "markdown": "kubernetes-development-i.md",
       "date": 1505776757,
       "author": "me"
+    },
+    {
+      "markdown": "kubernetes-ca.md",
+      "date": 1505877182,
+      "author": "me"
     }
 	]
 }
